@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Create or clear the "all_code" file
+> all_code
+
+# Loop through all .c and .h files in the current directory
+for file in *.c *.h; do
+  # Check if there are any .c or .h files in the directory
+  if [ -e "$file" ]; then
+    # Append the filename as a comment to the "all_code" file
+    echo "/* $file */" >> all_code
+    # Append the contents of the file to the "all_code" file
+    cat "$file" >> all_code
+    # Add a newline for separation
+    echo "" >> all_code
+  fi
+done
+
+echo "All .c and .h files have been concatenated into 'all_code'."

@@ -6,7 +6,8 @@
 static format_handler handlers[] = {
 	handle_char,
 	handle_string,
-	handle_percent
+	handle_percent,
+	handle_decimal
 };
 
 /**
@@ -19,17 +20,18 @@ static format_handler handlers[] = {
  */
 static int handle_specifier(const char format, va_list args, int *printed_chars)
 {
-	int i = 0;
+	int i;
+	int num_handlers = sizeof(handlers) / sizeof(handlers[0]);
 
-	while (i < 3 && format != '\0') /* Mapping handlers */
+	for (i = 0; i < num_handlers && format != '\0'; i++) /* Mapping handlers */
 	{
 		if ((format == 'c' && i == 0) ||
 				(format == 's' && i == 1) ||
-				(format == '%' && i == 2))
+				(format == '%' && i == 2) ||
+				((format == 'd' || format == 'i') && i == 3))
 		{
 			return (handlers[i](args, printed_chars));
 		}
-		i++;
 	}
 	return (0); /* Not a valid specifier */
 }

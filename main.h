@@ -4,6 +4,7 @@
 /* libraries */
 #include <stdarg.h>
 #include <unistd.h>
+#include <stdlib.h>
 
 
 /* custom types */
@@ -17,6 +18,7 @@ int _printf(const char *format, ...);
 int handle_char(va_list args, int *printed_chars);
 int handle_string(va_list args, int *printed_chars);
 int handle_percent(va_list args, int *printed_chars);
+int handle_decimal(va_list args, int *printed_chars);
 
 
 #endif /* MAIN_H */
