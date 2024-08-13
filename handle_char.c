@@ -11,7 +11,7 @@
  */
 int handle_char(va_list args, int *printed_chars)
 {
-	char arg = (char)va_arg(args, int);
+	char c = (char)va_arg(args, int);
 
 	write(1, &c, 1);
 	(*printed_chars)++;
